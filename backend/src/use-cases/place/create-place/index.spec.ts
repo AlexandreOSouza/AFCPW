@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { CreatePlace } from ".";
 import { Place } from "../../../entities/place";
 
-test("Create an place", () => {
+test("Create an place with execute", () => {
   const createPlace = new CreatePlace();
 
   expect(

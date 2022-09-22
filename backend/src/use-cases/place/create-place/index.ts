@@ -1,4 +1,5 @@
 import { Place } from "../../../entities/place";
+import { addPlace } from "../../../services/place";
 
 interface Request {
   title: string;
@@ -29,7 +30,7 @@ export class CreatePlace {
       rating,
       country,
     });
-
+    await addPlace(newPlace);
     return newPlace;
   }
 }

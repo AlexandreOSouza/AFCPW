@@ -1,4 +1,4 @@
-export interface PlaceProps {
+interface PlaceProps {
   title: string;
   description: string;
   image: string;
@@ -8,32 +8,54 @@ export interface PlaceProps {
 }
 
 export class Place {
-  private props: PlaceProps;
+  private title: string;
+  private description: string;
+  private image: string;
+  private ctaLink: string;
+  private rating: number;
+  private country: string;
 
-  get title(): string {
-    return this.props.title;
+  get getTitle(): string {
+    return this.title;
   }
 
-  get description(): string {
-    return this.props.description;
+  get getDescription(): string {
+    return this.description;
   }
 
-  get image(): string {
-    return this.props.image;
+  get getImage(): string {
+    return this.image;
   }
 
-  get ctaLink(): string {
-    return this.props.ctaLink;
+  get getCtaLink(): string {
+    return this.ctaLink;
   }
 
-  get rating(): number {
-    return this.props.rating;
+  get getRating(): number {
+    return this.rating;
   }
-  get country(): string {
-    return this.props.country;
+  get getCountry(): string {
+    return this.country;
+  }
+
+  get getProps(): PlaceProps {
+    return {
+      title: this.title,
+      description: this.description,
+      image: this.image,
+      country: this.country,
+      ctaLink: this.ctaLink,
+      rating: this.rating,
+    };
   }
 
   constructor(props: PlaceProps) {
-    this.props = props;
+    const { title, description, image, ctaLink, rating, country } = props;
+    this.title = title;
+    this.description = description;
+    this.image = image;
+    this.ctaLink = ctaLink;
+    this.rating = rating;
+    this.country = country;
   }
 }
