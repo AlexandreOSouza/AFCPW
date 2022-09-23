@@ -1,4 +1,5 @@
 import { addDoc, collection, updateDoc } from "firebase/firestore";
+import { Country } from "../../entities/country";
 import { COLLECTIONS } from "../../utils/constants";
 import { firestore } from "../firebase";
 
@@ -255,6 +256,20 @@ export async function addCountry() {
       const returnDoc = await addDoc(collectionCountry, country);
       const newId = returnDoc.id;
       await updateDoc(returnDoc, { id: newId });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function getCountryByName(countryName: string): Promise<Country> {
+  const collectionCountry = collection(firestore, COLLECTIONS.COUNTRIES);
+  try {
+    countries.map(async (country) => {
+      const returnDoc = await addDoc(collectionCountry, country);
+      const newId = returnDoc.id;
+      await updateDoc(returnDoc, { id: newId });
+      return new Country(returnDoc);
     });
   } catch (e) {
     console.log(e);
