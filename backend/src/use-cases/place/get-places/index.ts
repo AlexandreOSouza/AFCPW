@@ -10,7 +10,7 @@ type Response = Place[];
 export class GetPlaces {
   // this method is responsible to return a list of places based on country
   async execute({ country }: Request): Promise<Response> {
-    getPlaces();
-    return [];
+    const placeList = await getPlaces();
+    return placeList;
   }
 }

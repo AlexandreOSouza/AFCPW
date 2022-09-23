@@ -6,9 +6,10 @@ export async function getPlaces(): Promise<Place[]> {
   const placesCollection = collection(firestore, "places");
   const placesSnapshot = await getDocs(placesCollection);
 
-  const placeList = placesSnapshot.docs.map((doc) => doc.data());
-  console.log(placeList);
-  return [];
+  const placeList = placesSnapshot.docs.map((doc) =>
+    doc.data()
+  ) as Array<Place>;
+  return placeList;
 }
 
 export async function addPlace(place: Place) {
