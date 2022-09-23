@@ -10,7 +10,7 @@ interface Request {
   country: string;
 }
 
-type Response = Place;
+type Response = Place | undefined;
 
 export class CreatePlace {
   // this method is responsible to create a new place
@@ -30,7 +30,7 @@ export class CreatePlace {
       rating,
       country,
     });
-    await addPlace(newPlace);
-    return newPlace;
+    const updatedPlace = await addPlace(newPlace);
+    return updatedPlace;
   }
 }

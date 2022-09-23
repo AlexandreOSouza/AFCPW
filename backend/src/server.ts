@@ -2,6 +2,8 @@ import { GetPlaces } from "./use-cases/place/get-places";
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import { Place } from "./entities/place";
+import { CreatePlace } from "./use-cases/place/create-place";
 
 dotenv.config();
 
@@ -18,8 +20,18 @@ app.get("/places", async (req: Request, res: Response) => {
 });
 
 app.post("/place", async (req: Request, res: Response) => {
-  console.log(req.body);
-  res.send();
+  const { title, description, image, ctaLink, rating, country } = req.body;
+
+  const createPlace = new CreatePlace();
+  const newPlace = await createPlace.execute({
+    title,
+    description,
+    image,
+    ctaLink,
+    rating,
+    country,
+  });
+  res.json(newPlace);
 });
 
 app.listen(port, () => {

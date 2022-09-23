@@ -1,4 +1,5 @@
 interface PlaceProps {
+  id?: string;
   title: string;
   description: string;
   image: string;
@@ -8,6 +9,7 @@ interface PlaceProps {
 }
 
 export class Place {
+  private id?: string;
   private title: string;
   private description: string;
   private image: string;
@@ -15,6 +17,12 @@ export class Place {
   private rating: number;
   private country: string;
 
+  set setId(id: string) {
+    this.id = id;
+  }
+  get getId(): string | undefined {
+    return this.id;
+  }
   get getTitle(): string {
     return this.title;
   }
@@ -40,6 +48,7 @@ export class Place {
 
   get getProps(): PlaceProps {
     return {
+      id: "",
       title: this.title,
       description: this.description,
       image: this.image,

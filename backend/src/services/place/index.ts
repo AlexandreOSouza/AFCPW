@@ -1,6 +1,12 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { Place } from "../../entities/place";
-import { app, firestore } from "../firebase";
+import { firestore } from "../firebase";
 
 export async function getPlaces(): Promise<Place[]> {
   const placesCollection = collection(firestore, "places");
@@ -16,7 +22,10 @@ export async function addPlace(place: Place) {
   const placesCollection = collection(firestore, "places");
   try {
     const returnDoc = await addDoc(placesCollection, place.getProps);
-    return returnDoc;
+    const newId = returnDoc.id;
+    await updateDoc(returnDoc, { id: newId });
+    place.setId = newId;
+    return place;
   } catch (e) {
     console.log(e);
   }
