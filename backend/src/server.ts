@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { Place } from "./entities/place";
 import { CreatePlace } from "./use-cases/place/create-place";
+import { addCountry } from "./services/countries";
 
 dotenv.config();
 
